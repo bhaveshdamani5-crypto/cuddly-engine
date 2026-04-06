@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeGuard-Env | AI Environmental Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="glass-background"></div>
+    <div class="dashboard">
+        <header>
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <h1>SafeGuard-Env <span class="badge">Enterprise</span></h1>
+            </div>
+            <div class="header-status">
+                <span id="system-status" class="status-indicator online"></span> System Online
+            </div>
+        </header>
+
+        <main class="grid-layout">
+            <!-- Sensor Data -->
+            <section class="card sensor-panel">
+                <h2>Real-Time Environmental Telemetry</h2>
+                <div class="sensor-grid">
+                    <div class="sensor-metric">
+                        <span class="label">Temperature</span>
+                        <span class="value" id="val-temp">24.5 °C</span>
+                    </div>
+                    <div class="sensor-metric">
+                        <span class="label">Humidity</span>
+                        <span class="value" id="val-hum">45.0 %</span>
+                    </div>
+                    <div class="sensor-metric">
+                        <span class="label">CO2 Levels</span>
+                        <span class="value" id="val-co2">410 ppm</span>
+                    </div>
+                    <div class="sensor-metric">
+                        <span class="label">PM2.5 Index</span>
+                        <span class="value" id="val-pm">15 µg/m³</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI RL Control Panel -->
+            <section class="card ai-panel" id="rl-panel">
+                <div class="ai-header">
+                    <h2>AI Facility Controller</h2>
+                    <span class="ai-badge">Gymnasium RL Agent</span>
+                </div>
+                <div class="risk-display">
+                    <div class="risk-circle">
+                        <span id="action-id" style="font-size: 1.5rem">0</span>
+                    </div>
+                    <div class="risk-info">
+                        <h3 id="action-name">CONTINUE_OPERATIONS</h3>
+                        <p id="action-desc">AI recommends no mitigation changes.</p>
+                        <p id="llama-report" style="margin-top: 10px; font-size: 0.85rem; color: #3b82f6; font-style: italic; display: block; padding: 10px; background: rgba(59, 130, 246, 0.1); border-left: 3px solid #3b82f6; border-radius: 4px;">Llama-3 Analysis: All telemetry streams report baseline operations. Energy optimization protocol enabled.</p>
+                    </div>
+                </div>
+                <div style="margin-top:20px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                        <span>RL Expected Reward:</span>
+                        <span style="color:#10b981" id="rl-reward">+2.00</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Live Chart -->
+            <section class="card chart-panel">
+                <h2>Live Telemetry Stream</h2>
+                <div class="chart-container">
+                    <canvas id="telemetryChart"></canvas>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Controls for demo to trigger anomalies -->
+        <div class="demo-controls card">
+            <h3>Hackathon Demo Controls</h3>
+            <div class="btn-group">
+                <button onclick="injectAnomaly('normal')">Resume Normal</button>
+                <button onclick="injectAnomaly('fire')" class="danger-btn">Simulate Factory Fire</button>
+                <button onclick="injectAnomaly('leak')" class="warning-btn">Simulate Gas Leak</button>
+            </div>
+        </div>
+    </div>
+    <script src="/static/app.js"></script>
+</body>
+</html>
