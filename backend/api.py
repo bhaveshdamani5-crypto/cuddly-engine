@@ -6,7 +6,7 @@ import os
 import random
 
 try:
-    from stable_baselines3 import PPO
+    from stable_baselines3 import PPO  # type: ignore[import]
     STABLE_BASELINES_AVAILABLE = True
 except ImportError:
     STABLE_BASELINES_AVAILABLE = False
